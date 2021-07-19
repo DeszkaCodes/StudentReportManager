@@ -13,6 +13,7 @@ std::string Subject::getName() {
 }
 
 float Subject::GetMean() {
+	//Calculates sum of grades vector
 	float sum = std::accumulate(grades.begin(), grades.end(),
 		decltype(grades)::value_type(0));
 

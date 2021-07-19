@@ -8,11 +8,14 @@ public:
 	//Constructor
 	Student(std::string name, unsigned short heightCm, float weightKg, Subject subjects[7]);
 
+	Student(std::string name, unsigned short heightCm, float weightKg);
+
 	//Base data
 	std::string getName();
 	unsigned short getId();
 	unsigned short getHeight();
 	float getWeight();
+	void RegenID();
 
 	//Calculated
 	float Average(); //Calculates total average of grades

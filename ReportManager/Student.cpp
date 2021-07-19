@@ -1,12 +1,23 @@
 #include "Student.h"
+#include <time.h>
+#include <limits>
 
 Student::Student(std::string name, unsigned short heightCm, float weightKg, Subject subjects[7]) {
-	strcpy(this->name, name.c_str());
+	strcpy_s(this->name, name.c_str());
 
 	this->height = heightCm;
 	this->weight = weightKg;
 
 	this->subjects = subjects;
+
+	this->id = 0; //PLACEHOLDER CHANGE ASAP
+}
+
+Student::Student(std::string name, unsigned short heightCm, float weightKg) {
+	strcpy_s(this->name, name.c_str());
+
+	this->height = heightCm;
+	this->weight = weightKg;
 
 	this->id = 0; //PLACEHOLDER CHANGE ASAP
 }
@@ -20,7 +31,7 @@ unsigned short Student::getHeight() {
 }
 
 float Student::getWeight() {
-	return this->height;
+	return this->weight;
 }
 
 unsigned short Student::getId() {
@@ -45,4 +56,10 @@ unsigned short Student::DaysMissed() {
 	}
 
 	return sum;
+}
+
+void Student::RegenID() {
+	srand(time(NULL));
+
+	this->id = rand() % USHRT_MAX;
 }

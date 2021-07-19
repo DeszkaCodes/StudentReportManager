@@ -1,7 +1,7 @@
 #include "Subject.h"
 
-Subject::Subject(std::string name, std::vector<Grade> grades, unsigned short daysMissing = 0) {
-	strcpy(this->name, name.c_str());
+Subject::Subject(std::string name, std::vector<Grade> grades, unsigned short daysMissing) {
+	strcpy_s(this->name, name.c_str());
 
 	this->grades = grades;
 
@@ -14,8 +14,13 @@ std::string Subject::getName() {
 
 float Subject::GetMean() {
 	//Calculates sum of grades vector
-	float sum = std::accumulate(grades.begin(), grades.end(),
-		decltype(grades)::value_type(0));
+	int sum = 0;
+	unsigned short size = this->grades.size();
 
-	return sum / grades.size();
+	for(unsigned short i = 0; i < size; i++)
+	{
+		sum += (int)grades[i];
+	}
+
+	return (float)sum / size;
 }

@@ -16,10 +16,9 @@ enum Grade {
 class Subject {
 public:
 	//Setup and value change functions
-	Subject(std::string name, std::vector<Grade> grades, unsigned short daysMissing = 0);
+	Subject(std::string name, std::vector<Grade> grades);
 	std::string getName();
 	std::vector<Grade> grades;
-	unsigned short daysMissed;
 
 	//Calculator functions
 	float GetMean();

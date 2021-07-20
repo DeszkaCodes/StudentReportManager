@@ -1,11 +1,9 @@
 #include "Subject.h"
 
-Subject::Subject(std::string name, std::vector<Grade> grades, unsigned short daysMissing) {
+Subject::Subject(std::string name, std::vector<Grade> grades) {
 	strcpy_s(this->name, name.c_str());
 
 	this->grades = grades;
-
-	this->daysMissed = daysMissing;
 }
 
 std::string Subject::getName() {

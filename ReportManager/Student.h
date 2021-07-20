@@ -10,12 +10,16 @@ public:
 
 	Student(std::string name, unsigned short heightCm, float weightKg);
 
+	Student(unsigned short id, std::string name, unsigned short heightCm, float weightKg, Subject subjects[7]);
+
 	//Base data
 	std::string getName();
 	unsigned short getId();
 	unsigned short getHeight();
 	float getWeight();
 	void RegenID();
+	Subject* getSubjects();
+	Subject getSubject(unsigned short index);
 
 	//Calculated
 	float Average(); //Calculates total average of grades
@@ -38,7 +42,8 @@ private:
 	* 6. R.E.
 	* 7. I.T.
 	*/
-	Subject* subjects;
+	
+	Subject* subjectPointer = NULL;
 };
 
 #endif // !Student_H

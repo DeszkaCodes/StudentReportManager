@@ -3,13 +3,15 @@
 #ifndef IOSystem_H
 #define IOSystem_H
 
+bool CheckID(unsigned short id, std::string file);
+
 namespace StudentIO {
 	void WriteData(Student student);
 
-	Student* ReadAllData();
-
-	//Returns true if the given ID already exists
-	bool CheckID(unsigned short id);
 };
+
+namespace GradeIO {
+	void WriteData(Student student);
+}
 
 #endif // !IOSystem_H

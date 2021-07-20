@@ -4,44 +4,10 @@
 #include <sstream>
 #include "IOSystem.h"
 
-void StudentIO::WriteData(Student student) {
-	while (StudentIO::CheckID(student.getId())) {
-		student.RegenID();
-	}
+bool CheckID(unsigned short id, std::string file) {
+	const std::string file = "Files/" + file;
 
-	std::ofstream stream("Files/students.csv", std::ios::app | std::ios::out);
-
-	if (stream.is_open()) {
-		stream << student.getId() << ','
-			<< student.getName() << ','
-			<< student.getHeight() << ','
-			<< student.getWeight() << '\n';
-	}
-
-	stream.close();
-}
-
-/*Student* StudentIO::ReadAllData() {
-	std::ifstream stream("Files/students.csv", std::ios::in);
-
-	std::string line, word;
-
-	std::vector<Student> row;
-
-	while (std::getline(stream, line)) {
-
-		std::stringstream s(line);
-
-		short count = 0;
-		while (std::getline(s, word, ',')) {
-
-		}
-	}
-}*/
-
-//Returns true if the given ID already exists
-bool StudentIO::CheckID(unsigned short id) {
-	std::ifstream stream("Files/students.csv", std::ios::in);
+	std::ifstream stream(file, std::ios::in);
 
 	std::string line, word;
 
@@ -69,3 +35,40 @@ bool StudentIO::CheckID(unsigned short id) {
 
 	return false;
 }
+
+//StudentIO
+void StudentIO::WriteData(Student student) {
+	while (CheckID(student.getId(), "students.csv")) {
+		student.RegenID();
+	}
+
+	std::ofstream stream("Files/students.csv", std::ios::app | std::ios::out);
+
+	if (stream.is_open()) {
+		stream << student.getId() << ','
+			<< student.getName() << ','
+			<< student.getHeight() << ','
+			<< student.getWeight() << '\n';
+	}
+
+	stream.close();
+}
+
+//GradeIO
+void GradeIO::WriteData(Student student) {
+	std::ofstream stream("Files/grades.csv", std::ios::out, std::ios::app);
+
+	if (stream.is_open()) {
+		if (!CheckID(student.getId(), "grades.csv")) {
+			stream << student.getId() << ','
+				<< student.getSubject(0).StringifyGrades() << ','
+				<< student.getSubject(1).StringifyGrades() << ','
+				<< student.getSubject(2).StringifyGrades() << ','
+				<< student.getSubject(3).StringifyGrades() << ','
+				<< student.getSubject(4).StringifyGrades() << ','
+				<< student.getSubject(5).StringifyGrades() << ','
+				<< student.getSubject(6).StringifyGrades() << '\n';
+		}
+	}
+}
+

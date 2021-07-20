@@ -23,6 +23,7 @@ public:
 
 	//Calculator functions
 	float GetMean();
+	std::string StringifyGrades();
 
 private:
 	char name[20];

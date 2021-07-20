@@ -24,3 +24,17 @@ float Subject::GetMean() {
 
 	return (float)sum / size;
 }
+
+std::string Subject::StringifyGrades() {
+	std::string grades = "";
+
+	for (unsigned short i = 0; i < this->grades.size(); i++)
+	{
+		grades += this->grades[i];
+
+		if (i != this->grades.size())
+			grades += '-';
+	}
+
+	return grades;
+}

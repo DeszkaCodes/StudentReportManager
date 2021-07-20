@@ -1,4 +1,5 @@
 #include "Subject.h"
+#include <sstream>
 
 Subject::Subject(std::string name, std::vector<Grade> grades) {
 	strcpy_s(this->name, name.c_str());
@@ -32,6 +33,24 @@ std::string Subject::StringifyGrades() {
 
 		if (i != this->grades.size())
 			grades += '-';
+	}
+
+	return grades;
+}
+
+static std::vector<Grade> StringToGrade(std::string rawGrades) {
+
+	std::string rawGrade;
+
+	std::vector<Grade> grades;
+
+	std::stringstream s(rawGrades);
+
+	while (std::getline(s, rawGrade, '-')) {
+		
+		Grade grade = (Grade)std::stoi(rawGrade);
+
+		grades.push_back(grade);
 	}
 
 	return grades;

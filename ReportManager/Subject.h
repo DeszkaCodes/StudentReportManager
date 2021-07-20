@@ -24,6 +24,9 @@ public:
 	float GetMean();
 	std::string StringifyGrades();
 
+	//Static functions
+	static std::vector<Grade> StringToGrade(std::string rawGrades);
+
 private:
 	char name[20];
 };

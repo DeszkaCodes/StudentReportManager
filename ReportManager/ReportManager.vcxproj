@@ -142,10 +142,12 @@
   <ItemGroup>
     <ClCompile Include="IOSystem.cpp" />
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="Helper.cpp" />
     <ClCompile Include="Student.cpp" />
     <ClCompile Include="Subject.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Helper.h" />
     <ClInclude Include="IOSystem.h" />
     <ClInclude Include="Student.h" />
     <ClInclude Include="Subject.h" />

@@ -14,7 +14,7 @@ Student::Student(std::string name, unsigned short heightCm, float weightKg, Subj
 	this->RegenID();
 }
 
-Student::Student(unsigned short id, std::string name, unsigned short heightCm, float weightKg, Subject subjects[7]) {
+Student::Student(int id, std::string name, int heightCm, float weightKg, Subject subjects[7]) {
 	strcpy_s(this->name, name.c_str());
 
 	this->height = heightCm;

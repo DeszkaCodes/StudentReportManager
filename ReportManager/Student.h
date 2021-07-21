@@ -23,7 +23,6 @@ public:
 
 	//Calculated
 	float Average(); //Calculates total average of grades
-	unsigned short DaysMissed(); //Calculates total days missing
 
 private:
 	char name[50];

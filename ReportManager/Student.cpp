@@ -60,16 +60,6 @@ float Student::Average() {
 	return sum / 7;
 }
 
-unsigned short Student::DaysMissed() {
-	unsigned short sum = 0;
-
-	for (unsigned short i = 0; i < 7; i++) {
-		sum += this->subjectPointer[i].daysMissed;
-	}
-
-	return sum;
-}
-
 void Student::RegenID() {
 	srand(time(NULL));
 

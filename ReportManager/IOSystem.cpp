@@ -36,6 +36,7 @@ bool CheckID(unsigned short id, std::string fileName) {
 	return false;
 }
 
+
 //StudentIO
 void StudentIO::WriteData(Student student) {
 	while (CheckID(student.getId(), "students.csv")) {
@@ -52,6 +53,42 @@ void StudentIO::WriteData(Student student) {
 	}
 
 	stream.close();
+}
+
+std::vector<Student> StudentIO::ReadAll() {
+	std::ifstream stream("File/students.csv", std::ios::in);
+
+	std::vector<Student> students;
+
+	if (stream.is_open()) {
+		
+		std::string line, data;
+
+		std::vector<std::string> row;
+
+		while (std::getline(stream, line)) {
+			if (line[0] == '*')
+				continue;
+
+			row.clear();
+
+			std::stringstream s(line);
+
+			while (std::getline(s, data, ',')) {
+
+				row.push_back(data);
+
+			}
+
+			Subject* subjects = GradeIO::ReadGrade(std::stoi(row[0]));
+
+			Student student(std::stoi(row[0]), row[1], std::stoi(row[2]), std::stof(row[3]), subjects);
+
+			students.push_back(student);
+		}
+	}
+
+	return students;
 }
 
 //GradeIO
@@ -72,10 +109,12 @@ void GradeIO::WriteData(Student student) {
 	}
 }
 
-std::vector<Subject> GradeIO::ReadGrade(unsigned short id) {
+Subject* GradeIO::ReadGrade(unsigned short id) {
 	std::ifstream stream("Files/grades.csv", std::ios::in);
 
 	if (stream.is_open()) {
+
+		Subject* arr = NULL;
 
 		std::vector<Subject> subjects;
 
@@ -112,9 +151,13 @@ std::vector<Subject> GradeIO::ReadGrade(unsigned short id) {
 					subjects.push_back(subject);
 				}
 			}
-
 		}
-		return subjects;
+
+		std::copy(subjects.begin(),
+			subjects.end(),
+			arr);
+
+		return arr;
 	}
 	throw(404);
 }

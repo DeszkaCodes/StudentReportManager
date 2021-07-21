@@ -8,11 +8,12 @@ bool CheckID(unsigned short id, std::string fileName);
 namespace StudentIO {
 	void WriteData(Student student);
 
+	std::vector<Student> ReadAll();
 };
 
 namespace GradeIO {
 	void WriteData(Student student);
-	std::vector<Subject> ReadGrade(unsigned short id);
+	Subject* ReadGrade(unsigned short id);
 }
 
 #endif // !IOSystem_H

@@ -1,2 +1,0 @@
-﻿Source.obj : error LNK2019: unresolved external symbol "unsigned __int64 __cdecl ArrayLength<class Subject>(class Subject *)" (??$ArrayLength@VSubject@@@@YA_KPEAVSubject@@@Z) referenced in function main
-D:\FONTOS\Programozás\Projects\C++\StudentReportManager\ReportManager\x64\Debug\ReportManager.exe : fatal error LNK1120: 1 unresolved externals

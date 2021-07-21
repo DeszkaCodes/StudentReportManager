@@ -10,7 +10,7 @@ public:
 
 	Student(std::string name, unsigned short heightCm, float weightKg);
 
-	Student(unsigned short id, std::string name, unsigned short heightCm, float weightKg, Subject subjects[7]);
+	Student(int id, std::string name, int heightCm, float weightKg, Subject subjects[7]);
 
 	//Base data
 	std::string getName();

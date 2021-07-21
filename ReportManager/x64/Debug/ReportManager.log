@@ -1,0 +1,9 @@
+﻿  IOSystem.cpp
+  Source.cpp
+D:\FONTOS\Programozás\Projects\C++\StudentReportManager\ReportManager\Source.cpp(9,54): warning C4305: 'argument': truncation from 'double' to 'float'
+  Student.cpp
+D:\FONTOS\Programozás\Projects\C++\StudentReportManager\ReportManager\Student.cpp(64,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  Subject.cpp
+D:\FONTOS\Programozás\Projects\C++\StudentReportManager\ReportManager\Subject.cpp(41,43): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned short', possible loss of data
+  Generating Code...
+  ReportManager.vcxproj -> D:\FONTOS\Programozás\Projects\C++\StudentReportManager\ReportManager\x64\Debug\ReportManager.exe

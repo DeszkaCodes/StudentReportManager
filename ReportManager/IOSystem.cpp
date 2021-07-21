@@ -4,8 +4,8 @@
 #include <sstream>
 #include "IOSystem.h"
 
-bool CheckID(unsigned short id, std::string file) {
-	const std::string file = "Files/" + file;
+bool CheckID(unsigned short id, std::string fileName) {
+	const std::string file = "Files/" + fileName;
 
 	std::ifstream stream(file, std::ios::in);
 
@@ -70,5 +70,52 @@ void GradeIO::WriteData(Student student) {
 				<< student.getSubject(6).StringifyGrades() << '\n';
 		}
 	}
+}
+
+std::vector<Subject> GradeIO::ReadGrade(unsigned short id) {
+	std::ifstream stream("Files/grades.csv", std::ios::in);
+
+	if (stream.is_open()) {
+
+		std::vector<Subject> subjects;
+
+		std::string line, word;
+		std::vector<std::string> row;
+
+		bool found = false;
+
+		while (std::getline(stream, line)) {
+
+			if (line[0] == '*')
+				continue;
+
+			row.clear();
+
+			std::stringstream s(line);
+
+			while (std::getline(s, word, ',')) {
+
+				row.push_back(word);
+			}
+
+			unsigned short newId = std::stoi(row[0]);
+
+			if (newId == id) {
+				found = true;
+
+				for (unsigned short i = 1; i < 8; i++)
+				{ 
+					std::vector<short> grades = Subject::StringToGrade(row[i]);
+
+					Subject subject((SubjectName)i, grades);
+
+					subjects.push_back(subject);
+				}
+			}
+
+		}
+		return subjects;
+	}
+	throw(404);
 }
 

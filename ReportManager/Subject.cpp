@@ -39,7 +39,6 @@ std::string Subject::StringifyGrades() {
 }
 
 std::vector<Grade> Subject::StringToGrade(std::string rawGrades) {
-
 	std::string rawGrade;
 
 	std::vector<Grade> grades;

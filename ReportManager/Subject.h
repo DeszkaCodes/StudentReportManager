@@ -5,30 +5,32 @@
 #ifndef Subject_H
 #define Subject_H
 
-enum Grade {
-	A = 5,
-	B = 4,
-	C = 3,
-	D = 2,
-	F = 1
+enum class SubjectName: short {
+	Math = 1,
+	PE = 2,
+	History = 3,
+	Grammar = 4,
+	Art = 5,
+	RE = 6,
+	IT = 7 
 };
 
 class Subject {
 public:
 	//Setup and value change functions
-	Subject(std::string name, std::vector<Grade> grades);
+	Subject(SubjectName name, std::vector<short> grades);
 	std::string getName();
-	std::vector<Grade> grades;
+	std::vector<short> grades;
 
 	//Calculator functions
 	float GetMean();
 	std::string StringifyGrades();
 
 	//Static functions
-	static std::vector<Grade> StringToGrade(std::string rawGrades);
+	static std::vector<short> StringToGrade(std::string rawGrades);
 
 private:
-	char name[20];
+	SubjectName name;
 };
 
 #endif // !Subject_H

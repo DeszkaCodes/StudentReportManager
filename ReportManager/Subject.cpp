@@ -1,14 +1,38 @@
 #include "Subject.h"
 #include <sstream>
 
-Subject::Subject(std::string name, std::vector<Grade> grades) {
-	strcpy_s(this->name, name.c_str());
+Subject::Subject(SubjectName name, std::vector<short> grades) {
+	this->name = name;
 
 	this->grades = grades;
 }
 
 std::string Subject::getName() {
-	return this->name;
+	switch (this->name) {
+	case SubjectName::Math:
+		return "Math";
+		break;
+	case SubjectName::PE:
+		return "P.E.";
+		break;
+	case SubjectName::History:
+		return "History";
+		break;
+	case SubjectName::Grammar:
+		return "Grammar";
+		break;
+	case SubjectName::Art:
+		return "Art";
+		break;
+	case SubjectName::RE:
+		return "R.E.";
+		break;
+	case SubjectName::IT:
+		return "I.T.";
+		break;
+	default:
+		return "Error";
+	}
 }
 
 float Subject::GetMean() {
@@ -18,7 +42,7 @@ float Subject::GetMean() {
 
 	for(unsigned short i = 0; i < size; i++)
 	{
-		sum += (int)grades[i];
+		sum += grades[i];
 	}
 
 	return (float)sum / size;
@@ -29,25 +53,25 @@ std::string Subject::StringifyGrades() {
 
 	for (unsigned short i = 0; i < this->grades.size(); i++)
 	{
-		grades += this->grades[i];
+		grades += std::to_string(this->grades[i]);
 
-		if (i != this->grades.size())
+		if (i != this->grades.size()-1)
 			grades += '-';
 	}
 
 	return grades;
 }
 
-std::vector<Grade> Subject::StringToGrade(std::string rawGrades) {
+std::vector<short> Subject::StringToGrade(std::string rawGrades) {
 	std::string rawGrade;
 
-	std::vector<Grade> grades;
+	std::vector<short> grades;
 
 	std::stringstream s(rawGrades);
 
 	while (std::getline(s, rawGrade, '-')) {
 		
-		Grade grade = (Grade)std::stoi(rawGrade);
+		short grade = std::stoi(rawGrade);
 
 		grades.push_back(grade);
 	}

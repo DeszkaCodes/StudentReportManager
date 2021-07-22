@@ -21,6 +21,7 @@ public:
 	Subject(SubjectType _name, std::vector<unsigned short> grades);
 	Subject(SubjectType _name, std::string grades);
 
+
 	//Two ways to get the name of the subject
 	std::string getNameStr();
 	SubjectType getNameType();

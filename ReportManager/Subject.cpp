@@ -1,6 +1,4 @@
 #include "Subject.h"
-#include <vector>
-#include <string>
 #include <sstream>
 #include <numeric>
 
@@ -49,7 +47,7 @@ SubjectType Subject::getNameType() {
 
 
 double Subject::GetMean() {
-	unsigned int sum = std::accumulate(this->grades.begin(), this->grades.end(),
+	double sum = std::accumulate(this->grades.begin(), this->grades.end(),
 		decltype(this->grades)::value_type(0));
 
 	return sum / this->grades.size();

@@ -41,7 +41,7 @@ protected:
 	Person(Gender gender, std::string name, tm birthDate);
 };
 
-class Student : protected Person {
+class Student : public Person {
 public:
 	Student(Gender gender, std::string name, tm birthDate, float height, float weight, Subject subjects[7]);
 	Student(Person person, Subject subjects[7]);

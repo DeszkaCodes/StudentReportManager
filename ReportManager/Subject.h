@@ -1,6 +1,8 @@
 #pragma once
 #include <vector>
 #include <string>
+#include <sstream>
+#include <numeric>
 
 //SubjectTypes to make creating subjects easier
 enum class SubjectType : short {

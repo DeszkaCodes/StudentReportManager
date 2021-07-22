@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <ctime>
+#include <sstream>
 #include "Subject.h"
 
 enum class Gender : unsigned char {

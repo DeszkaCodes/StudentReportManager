@@ -1,5 +1,4 @@
 #include "Person.h"
-#include <sstream>
 
 //Person class
 Person::Person(Gender gender, std::string name, tm birthDate, float height, float weight) :

@@ -1,8 +1,4 @@
 #include "Subject.h"
-#include <vector>
-#include <string>
-#include <sstream>
-#include <numeric>
 
 
 //Use member initializer to change the name constant

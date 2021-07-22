@@ -1,8 +1,5 @@
 #pragma once
 #include <vector>
-#include <string>
-#include <sstream>
-#include <numeric>
 
 //SubjectTypes to make creating subjects easier
 enum class SubjectType : short {
@@ -36,12 +33,11 @@ public:
 	double GetMean();
 
 	//Convert grades vector into a string, which can be written into the files
-	std::string* GradesToString();
+	std::string GradesToString();
 
 	//Convert a string into an unsigned short vector
-	static std::vector<unsigned short>* StringToGrades(std::string string, char seperator = '-');
+	static std::vector<unsigned short> StringToGrades(std::string string, char seperator = '-');
 
 private:
 	const SubjectType name;
 };
-

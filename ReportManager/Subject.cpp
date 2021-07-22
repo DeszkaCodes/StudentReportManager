@@ -1,5 +1,8 @@
 #include "Subject.h"
-
+#include <vector>
+#include <string>
+#include <sstream>
+#include <numeric>
 
 //Use member initializer to change the name constant
 Subject::Subject(SubjectType _name, std::vector<unsigned short> grades) :
@@ -8,7 +11,7 @@ Subject::Subject(SubjectType _name, std::vector<unsigned short> grades) :
 }
 Subject::Subject(SubjectType _name, std::string grades) :
 	name(_name) {
-	this->grades = *Subject::StringToGrades(grades);
+	this->grades = Subject::StringToGrades(grades);
 }
 
 
@@ -53,7 +56,7 @@ double Subject::GetMean() {
 }
 
 
-std::string* Subject::GradesToString() {
+std::string Subject::GradesToString() {
 	std::string gradesStr;
 
 	for (size_t i = 0; i < this->grades.size(); i++)
@@ -64,12 +67,12 @@ std::string* Subject::GradesToString() {
 		gradesStr = gradesStr.append(std::to_string(this->grades[i]));
 	}
 
-	return &gradesStr;
+	return gradesStr;
 }
 
 
 //String will be seperated by the seperator
-std::vector<unsigned short>* Subject::StringToGrades(std::string string, char seperator) {
+std::vector<unsigned short> Subject::StringToGrades(std::string string, char seperator) {
 
 	std::vector<unsigned short> grades;
 
@@ -86,5 +89,5 @@ std::vector<unsigned short>* Subject::StringToGrades(std::string string, char se
 		}
 	}
 
-	return &grades;
+	return grades;
 }

@@ -71,12 +71,14 @@ void StudentIO::WriteData(Student student) {
 
 	if (stream.is_open()) {
 
-		stream << student.getId() << ','
-			<< student.getName() << ','
-			<< student.height << ','
-			<< student.weight << ','
-			<< student.getBirthString() << ','
-			<< student.getGenderChar() << '\n';
+		if (!IDRes::CheckID(student.getId(), "students").getFound()) {
+			stream << student.getId() << ','
+				<< student.getName() << ','
+				<< student.height << ','
+				<< student.weight << ','
+				<< student.getBirthString() << ','
+				<< student.getGenderChar() << '\n';
+		}
 
 		stream.close();
 	}

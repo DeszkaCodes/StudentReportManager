@@ -27,7 +27,7 @@ namespace StudentIO {
 
 	Student ReadStudent(unsigned short id);
 
-	Student* ReadAll();
+	std::vector<Student> ReadAll();
 
 	void EditData(unsigned short id, Student student);
 }
@@ -35,9 +35,7 @@ namespace StudentIO {
 namespace GradeIO {
 	void WriteData(unsigned short id, Subject subjects[]);
 
-	Subject* ReadGrades(unsigned short id);
-
-	Subject** ReadAll();
+	std::vector<Subject> ReadGrades(unsigned short id);
 
 	void EditData(unsigned short id, Subject subjects[]);
 }

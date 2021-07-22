@@ -127,7 +127,6 @@ Student StudentIO::ReadStudent(unsigned short id) {
 	}
 	else
 		throw "File not found";
-
 }
 
 
@@ -159,5 +158,57 @@ void GradeIO::WriteData(unsigned short id, Subject subjects[]) {
 		throw "File not found";
 }
 
+std::vector<Subject> GradeIO::ReadGrades(unsigned short id) {
+	std::ifstream stream("Files/grades.csv", std::ios::in);
+
+	if (stream.is_open()) {
+
+		std::vector<Subject> subjects;
+
+		std::vector<std::string> row;
+
+		std::string line, column;
+
+		bool found = false;
+
+		while (getline(stream, line)) {
+			if (line[0] == '*')
+				continue;
+
+			row.clear();
+
+			std::stringstream s(line);
+
+			while (getline(s, column, ',')) {
+				row.push_back(column);
+
+				if (std::stoi(row[0]) == id)
+					found = true;
+				else
+					break;
+
+			}
+
+
+			if (found) {
+				for (short i = 1; i < row.size(); i++)
+				{
+					Subject subj((SubjectType)i, row[i]);
+
+					subjects.push_back(subj);
+				}
+
+				return subjects;
+			}
+			else
+				continue;
+		}
+
+		//If code reaches this far, it didn't found a student with the given ID
+		throw "ID not found";
+	}
+	else
+		throw "File not found";
+}
 
 //GradeIO end

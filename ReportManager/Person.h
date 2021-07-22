@@ -2,7 +2,11 @@
 #include <string>
 #include <ctime>
 #include <sstream>
+#include <time.h>
+#include <random>
+#include <limits>
 #include "Subject.h"
+#include "IOSystem.h"
 
 enum class Gender : unsigned char {
 	Male = 'm',
@@ -55,7 +59,7 @@ public:
 	double Average();
 
 	//Generate unique id
-	void GenerateID(); //NEEDS IMPLEMENTATION
+	void GenerateID();
 
 private:
 	//Unique identifier of each person

@@ -127,5 +127,13 @@ double Student::Average(){
 }
 
 void Student::GenerateID(){
+	srand(time(NULL));
 
+	unsigned short tempId;
+
+	do {
+		tempId = rand() % USHRT_MAX;
+	} while (IDRes::CheckID(tempId, "students").getFound());
+
+	this->id = tempId;
 }

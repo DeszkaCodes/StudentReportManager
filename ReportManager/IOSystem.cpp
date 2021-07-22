@@ -48,11 +48,10 @@ IDRes IDRes::CheckID(unsigned short id, std::string csvName) {
 				return IDRes(true, row, csvName);
 			}
 		}
-
 		stream.close();
-
-		return IDRes(false);
 	}
+
+	return IDRes(false);
 }
 
 //IDRes end

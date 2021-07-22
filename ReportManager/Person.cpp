@@ -1,6 +1,5 @@
 #include "Person.h"
 #include "IOSystem.h"
-#include <string>
 #include <ctime>
 #include <sstream>
 #include <time.h>

@@ -23,6 +23,7 @@ public:
 
 	std::string getName();
 	tm getBirthDate();
+	std::string getBirthString();
 
 
 	//Variables

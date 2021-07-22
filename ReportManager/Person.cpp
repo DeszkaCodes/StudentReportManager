@@ -45,6 +45,16 @@ tm Person::getBirthDate(){
 	return this->birthDate;
 }
 
+std::string Person::getBirthString() {
+	std::string date;
+
+	date.append(std::to_string(this->birthDate.tm_year + 1990) + '-');
+	date.append(std::to_string(this->birthDate.tm_mon + 1) + '-');
+	date.append(std::to_string(this->birthDate.tm_mday));
+
+	return date;
+}
+
 //Date format YYYY-MM-DD
 tm Person::StringToDate(std::string rawDate){
 

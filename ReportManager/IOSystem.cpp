@@ -88,7 +88,7 @@ Student StudentIO::ReadStudent(unsigned short id) {
 
 	if (stream.is_open()) {
 
-		std::vector<std::string>
+		//std::vector<std::string>
 
 	}
 }

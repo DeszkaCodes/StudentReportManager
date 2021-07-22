@@ -2,14 +2,15 @@
 #include <vector>
 #include <string>
 #include <sstream>
+#include <numeric>
 
 
 //Use member initializer to change the name constant
-Subject::Subject(Type _name, std::vector<unsigned short> grades) :
+Subject::Subject(SubjectType _name, std::vector<unsigned short> grades) :
 	name(_name) {
 	this->grades = grades;
 }
-Subject::Subject(Type _name, std::string grades) :
+Subject::Subject(SubjectType _name, std::string grades) :
 	name(_name) {
 	this->grades = *Subject::StringToGrades(grades);
 }
@@ -18,43 +19,39 @@ Subject::Subject(Type _name, std::string grades) :
 //Non elegant way to get the name as a string
 std::string Subject::getNameStr() {
 	switch (this->name) {
-	case Type::Math:
+	case SubjectType::Math:
 		return "Math";
 		break;
-	case Type::PE:
+	case SubjectType::PE:
 		return "P.E.";
 		break;
-	case Type::History:
+	case SubjectType::History:
 		return "History";
 		break;
-	case Type::Grammar:
+	case SubjectType::Grammar:
 		return "Grammar";
 		break;
-	case Type::Art:
+	case SubjectType::Art:
 		return "Art";
 		break;
-	case Type::RE:
+	case SubjectType::RE:
 		return "R.E.";
 		break;
-	case Type::IT:
+	case SubjectType::IT:
 		return "I.T.";
 		break;
 	default:
 		return "Error";
 	}
 }
-Type Subject::getNameType() {
+SubjectType Subject::getNameType() {
 	return this->name;
 }
 
 
 double Subject::GetMean() {
-	unsigned int sum = 0;
-
-	for (size_t i = 0; i < this->grades.size(); i++)
-	{
-		sum += this->grades[i];
-	}
+	unsigned int sum = std::accumulate(this->grades.begin(), this->grades.end(),
+		decltype(this->grades)::value_type(0));
 
 	return sum / this->grades.size();
 }

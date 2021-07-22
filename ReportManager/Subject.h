@@ -2,8 +2,8 @@
 #include <vector>
 #include <string>
 
-//Types to make creating subjects easier
-enum class Type : short {
+//SubjectTypes to make creating subjects easier
+enum class SubjectType : short {
 	Math = 1,
 	PE = 2,
 	History = 3,
@@ -18,12 +18,12 @@ enum class Type : short {
 class Subject
 {
 public:
-	Subject(Type _name, std::vector<unsigned short> grades);
-	Subject(Type _name, std::string grades);
+	Subject(SubjectType _name, std::vector<unsigned short> grades);
+	Subject(SubjectType _name, std::string grades);
 
 	//Two ways to get the name of the subject
 	std::string getNameStr();
-	Type getNameType();
+	SubjectType getNameType();
 
 
 	/*The grades are stored in unsigned short vectors
@@ -40,6 +40,6 @@ public:
 	static std::vector<unsigned short>* StringToGrades(std::string string, char seperator = '-');
 
 private:
-	const Type name;
+	const SubjectType name;
 };
 

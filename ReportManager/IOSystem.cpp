@@ -1,4 +1,8 @@
 #include "IOSystem.h"
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <sstream>
 
 
 //IDRes class
@@ -24,6 +28,7 @@ IDRes IDRes::CheckID(unsigned short id, std::string csvName) {
 
 	if (stream.is_open()) {
 
+		//Temporary variable to hold the ID which was read.
 		unsigned short readId;
 
 		std::string line, column;
@@ -33,6 +38,7 @@ IDRes IDRes::CheckID(unsigned short id, std::string csvName) {
 		while (getline(stream, line)) {
 			row++;
 
+			//To Skip the first row
 			if (line[0] == '*')
 				continue;
 
@@ -60,6 +66,7 @@ IDRes IDRes::CheckID(unsigned short id, std::string csvName) {
 
 //StudentIO namespace
 
+
 void StudentIO::WriteData(Student student) {
 	std::ofstream stream("Files/students.csv", std::ios::app | std::ios::out);
 
@@ -73,6 +80,16 @@ void StudentIO::WriteData(Student student) {
 			<< student.getGenderChar() << '\n';
 
 		stream.close();
+	}
+}
+
+Student StudentIO::ReadStudent(unsigned short id) {
+	std::ifstream stream("Files/students.csv", std::ios::in);
+
+	if (stream.is_open()) {
+
+		std::vector<std::string>
+
 	}
 }
 

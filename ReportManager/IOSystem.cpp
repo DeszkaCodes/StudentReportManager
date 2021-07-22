@@ -128,12 +128,34 @@ Student StudentIO::ReadStudent(unsigned short id) {
 
 }
 
+
+
 //StudentIO end
 
 
 //GradeIO namespace
 
+void GradeIO::WriteData(unsigned short id, Subject subjects[]) {
+	std::ofstream stream("Files/grades.csv", std::ios::app | std::ios::out);
 
+	if (stream.is_open()) {
+
+		if (!IDRes::CheckID(id, "grades").getFound()) {
+			stream << id << ','
+				<< subjects[0].GradesToString() << ','
+				<< subjects[1].GradesToString() << ','
+				<< subjects[2].GradesToString() << ','
+				<< subjects[3].GradesToString() << ','
+				<< subjects[4].GradesToString() << ','
+				<< subjects[5].GradesToString() << ','
+				<< subjects[6].GradesToString() << '\n';
+		}
+
+		stream.close();
+	}
+	else
+		throw "File not found";
+}
 
 
 //GradeIO end

@@ -1,7 +1,6 @@
 #include "IOSystem.h"
 #include <iostream>
 #include <fstream>
-#include <vector>
 #include <sstream>
 
 
@@ -88,9 +87,53 @@ Student StudentIO::ReadStudent(unsigned short id) {
 
 	if (stream.is_open()) {
 
-		//std::vector<std::string>
+		std::vector<std::string> row;
 
+		std::string line, column;
+
+		while (getline(stream, line)) {
+			if (line[0] == '*')
+				continue;
+
+			row.clear();
+
+			std::stringstream s(line);
+
+			while (getline(s, column, ',')) {
+				row.push_back(column);
+			}
+
+			/*
+			* DO SUBJECT READING HERE
+			*
+			* DELETE TEMP SUBJECTS
+			*/
+
+			if (std::stoi(row[0]) == id) {
+				Subject temp[7]{ Subject(SubjectType::Math, "5"), Subject(SubjectType::Math, "5") , Subject(SubjectType::Math, "5") , Subject(SubjectType::Math, "5") , Subject(SubjectType::Math, "5") ,Subject(SubjectType::Math, "5") ,Subject(SubjectType::Math, "5") };
+
+				Student student(row[0], row[5][0], row[1], row[4], row[2], row[3], temp);
+
+				return student;
+			}
+			else
+				continue;
+		}
+
+		//If code reaches this far, it didn't found a student with the given ID
+		throw "ID not found";
 	}
+	else
+		throw "File not found";
+
 }
 
 //StudentIO end
+
+
+//GradeIO namespace
+
+
+
+
+//GradeIO end

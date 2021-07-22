@@ -1,12 +1,6 @@
 #pragma once
-#include <string>
-#include <ctime>
-#include <sstream>
-#include <time.h>
-#include <random>
-#include <limits>
 #include "Subject.h"
-#include "IOSystem.h"
+
 
 enum class Gender : unsigned char {
 	Male = 'm',
@@ -50,6 +44,8 @@ class Student : public Person {
 public:
 	Student(Gender gender, std::string name, tm birthDate, float height, float weight, Subject subjects[7]);
 	Student(Person person, Subject subjects[7]);
+	Student(std::string id, char gender, std::string name, std::string birthDate, std::string height, std::string weight, Subject subjects[7]);
+
 
 	unsigned short getId();
 

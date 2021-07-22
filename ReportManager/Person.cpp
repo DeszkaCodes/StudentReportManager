@@ -1,4 +1,11 @@
 #include "Person.h"
+#include "IOSystem.h"
+#include <string>
+#include <ctime>
+#include <sstream>
+#include <time.h>
+#include <random>
+#include <limits>
 
 //Person class
 Person::Person(Gender gender, std::string name, tm birthDate, float height, float weight) :
@@ -6,7 +13,6 @@ Person::Person(Gender gender, std::string name, tm birthDate, float height, floa
 	this->height = height;
 	this->weight = weight;
 }
-
 #pragma warning( push )
 #pragma warning( disable : 26495 )
 Person::Person(Gender gender, std::string name, tm birthDate) :
@@ -41,7 +47,7 @@ std::string Person::getName() {
 	return this->name;
 }
 
-tm Person::getBirthDate(){
+tm Person::getBirthDate() {
 	return this->birthDate;
 }
 
@@ -56,7 +62,7 @@ std::string Person::getBirthString() {
 }
 
 //Date format YYYY-MM-DD
-tm Person::StringToDate(std::string rawDate){
+tm Person::StringToDate(std::string rawDate) {
 
 	std::string data;
 
@@ -103,19 +109,30 @@ Student::Student(Person person, Subject subjects[7]) :
 	GenerateID();
 }
 
-unsigned short Student::getId(){
+Student::Student(std::string id, char gender, std::string name, std::string birthDate, std::string height, std::string weight, Subject subjects[7]) :
+	Person((Gender)gender, name, Person::StringToDate(birthDate)) {
+	this->height = std::stof(height);
+	this->weight = std::stof(weight);
+
+	this->subjects = subjects;
+
+	this->id = std::stoi(id);
+}
+
+
+unsigned short Student::getId() {
 	return this->id;
 }
 
-Subject Student::getSubject(unsigned short index){
+Subject Student::getSubject(unsigned short index) {
 	return this->subjects[index];
 }
 
-Subject* Student::getSubjects(){
+Subject* Student::getSubjects() {
 	return this->subjects;
 }
 
-double Student::Average(){
+double Student::Average() {
 	double sum = 0;
 
 	for (unsigned short i = 0; i < 7; i++)
@@ -126,8 +143,11 @@ double Student::Average(){
 	return sum / 7;
 }
 
-void Student::GenerateID(){
+void Student::GenerateID() {
+#pragma warning( push )
+#pragma warning( disable : 4244 )
 	srand(time(NULL));
+#pragma warning( pop )
 
 	unsigned short tempId;
 

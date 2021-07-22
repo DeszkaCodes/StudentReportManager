@@ -56,3 +56,24 @@ IDRes IDRes::CheckID(unsigned short id, std::string csvName) {
 
 //IDRes end
 
+
+
+//StudentIO namespace
+
+void StudentIO::WriteData(Student student) {
+	std::ofstream stream("Files/students.csv", std::ios::app | std::ios::out);
+
+	if (stream.is_open()) {
+
+		stream << student.getId() << ','
+			<< student.getName() << ','
+			<< student.height << ','
+			<< student.weight << ','
+			<< student.getBirthString() << ','
+			<< student.getGenderChar() << '\n';
+
+		stream.close();
+	}
+}
+
+//StudentIO end

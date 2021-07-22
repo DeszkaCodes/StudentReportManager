@@ -1,4 +1,5 @@
 #include "Person.h"
+#include <sstream>
 
 //Person class
 Person::Person(Gender gender, std::string name, tm birthDate, float height, float weight) :
@@ -43,6 +44,32 @@ std::string Person::getName() {
 
 tm Person::getBirthDate(){
 	return this->birthDate;
+}
+
+//Date format YYYY-MM-DD
+tm Person::StringToDate(std::string rawDate){
+
+	std::string data;
+
+	unsigned short arrDate[3]{ 0,0,0 };
+
+	std::stringstream s(rawDate);
+
+	unsigned short counter = 0;
+
+	while (std::getline(s, data, '-')) {
+		arrDate[counter] = std::stoi(data);
+
+		counter++;
+	}
+
+	tm date;
+
+	date.tm_year = arrDate[0] - 1990;
+	date.tm_mon = arrDate[1] - 1;
+	date.tm_mday = arrDate[2];
+
+	return date;
 }
 
 

@@ -28,6 +28,9 @@ public:
 	float height; //Meter
 	float weight; //Kilogramm
 
+	//Other methods
+	static tm StringToDate(std::string rawDate);
+
 protected:
 	const Gender gender;
 	const std::string name;

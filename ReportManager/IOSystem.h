@@ -5,21 +5,26 @@
 #include <vector>
 #include <sstream>
 
-namespace IDIO {
-	class IDRes {
-	public:
-		IDRes(bool isFound, unsigned int row = 0, std::string fileName = "None");
+class IDRes {
+public:
+	IDRes(bool isFound, unsigned int row = 0, std::string fileName = "None");
 
-		bool getFound();
-		unsigned int getRow();
-		std::string getFileName();
+	bool getFound();
+	unsigned int getRow();
+	std::string getFileName();
 
-	private:
-		const bool found = false;
-		const unsigned int row;
-		const std::string fileName;
-	};
+	static IDRes CheckID(unsigned short id, std::string csvName);
 
-	IDRes CheckID(unsigned short id, std::string csvName);
-} 
+private:
+	const bool found = false;
+	const unsigned int row;
+	const std::string fileName;
+};
 
+namespace StudentIO {
+	void WriteData(Student student);
+}
+
+namespace GradeIO {
+
+}

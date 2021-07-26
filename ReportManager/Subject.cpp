@@ -15,34 +15,8 @@ Subject::Subject(std::string _name, std::string grades) :
 
 
 //Non elegant way to get the name as a string
-std::string Subject::getNameStr() {
-	switch (this->name) {
-	case SubjectType::Math:
-		return "Math";
-		break;
-	case SubjectType::PE:
-		return "P.E.";
-		break;
-	case SubjectType::History:
-		return "History";
-		break;
-	case SubjectType::Grammar:
-		return "Grammar";
-		break;
-	case SubjectType::Art:
-		return "Art";
-		break;
-	case SubjectType::RE:
-		return "R.E.";
-		break;
-	case SubjectType::IT:
-		return "I.T.";
-		break;
-	default:
-		return "Error";
-	}
-}
-SubjectType Subject::getNameType() {
+std::string Subject::getName() {
+
 	return this->name;
 }
 

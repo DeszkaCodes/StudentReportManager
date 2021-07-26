@@ -2,19 +2,6 @@
 #include <vector>
 #include <string>
 
-//SubjectTypes to make creating subjects easier
-enum class SubjectType : short {
-	Math = 1,
-	PE = 2,
-	History = 3,
-	Grammar = 4,
-	Art = 5,
-	RE = 6,
-	IT = 7,
-	Error = 404
-};
-
-
 class Subject
 {
 public:

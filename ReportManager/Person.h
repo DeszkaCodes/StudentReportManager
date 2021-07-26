@@ -42,15 +42,15 @@ protected:
 
 class Student : public Person {
 public:
-	Student(Gender gender, std::string name, tm birthDate, float height, float weight, Subject subjects[7]);
-	Student(Person person, Subject subjects[7]);
-	Student(std::string id, char gender, std::string name, std::string birthDate, std::string height, std::string weight, Subject subjects[7]);
+	Student(Gender gender, std::string name, tm birthDate, float height, float weight, std::vector<Subject> subjects);
+	Student(Person person, std::vector<Subject> subjects);
+	Student(std::string id, char gender, std::string name, std::string birthDate, std::string height, std::string weight, std::vector<Subject> subjects);
 
 
 	unsigned short getId();
 
 	Subject getSubject(unsigned short index);
-	Subject* getSubjects();
+	std::vector<Subject> getSubjects();
 
 	double Average();
 
@@ -62,5 +62,5 @@ private:
 	unsigned short id;
 
 	//Seven subjects of the student
-	Subject* subjects = NULL;
+	std::vector<Subject> subjects;
 };

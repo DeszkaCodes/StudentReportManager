@@ -1,13 +1,14 @@
 #include "Subject.h"
 #include <sstream>
 #include <numeric>
+#include <iostream>
 
 //Use member initializer to change the name constant
-Subject::Subject(SubjectType _name, std::vector<unsigned short> grades) :
+Subject::Subject(std::string _name, std::vector<unsigned short> grades) :
 	name(_name) {
 	this->grades = grades;
 }
-Subject::Subject(SubjectType _name, std::string grades) :
+Subject::Subject(std::string _name, std::string grades) :
 	name(_name) {
 	this->grades = Subject::StringToGrades(grades);
 }
@@ -45,10 +46,13 @@ SubjectType Subject::getNameType() {
 	return this->name;
 }
 
-
 double Subject::GetMean() {
-	double sum = std::accumulate(this->grades.begin(), this->grades.end(),
-		decltype(this->grades)::value_type(0));
+	double sum = 0;
+
+	for (size_t i = 0; i < this->grades.size(); i++)
+	{
+		sum += this->grades[i];
+	}
 
 	return sum / this->grades.size();
 }

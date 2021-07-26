@@ -88,7 +88,7 @@ tm Person::StringToDate(std::string rawDate) {
 
 
 //Student class
-Student::Student(Gender gender, std::string name, tm birthDate, float height, float weight, Subject subjects[7]) :
+Student::Student(Gender gender, std::string name, tm birthDate, float height, float weight, std::vector<Subject> subjects) :
 	Person(gender, name, birthDate) {
 	this->height = height;
 	this->weight = weight;
@@ -98,7 +98,7 @@ Student::Student(Gender gender, std::string name, tm birthDate, float height, fl
 	GenerateID();
 }
 
-Student::Student(Person person, Subject subjects[7]) :
+Student::Student(Person person, std::vector<Subject> subjects) :
 	Person(person.getGender(), person.getName(), person.getBirthDate()) {
 	this->weight = person.weight;
 	this->height = person.height;
@@ -108,7 +108,7 @@ Student::Student(Person person, Subject subjects[7]) :
 	GenerateID();
 }
 
-Student::Student(std::string id, char gender, std::string name, std::string birthDate, std::string height, std::string weight, Subject subjects[7]) :
+Student::Student(std::string id, char gender, std::string name, std::string birthDate, std::string height, std::string weight, std::vector<Subject> subjects) :
 	Person((Gender)gender, name, Person::StringToDate(birthDate)) {
 	this->height = std::stof(height);
 	this->weight = std::stof(weight);
@@ -127,7 +127,7 @@ Subject Student::getSubject(unsigned short index) {
 	return this->subjects[index];
 }
 
-Subject* Student::getSubjects() {
+std::vector<Subject> Student::getSubjects() {
 	return this->subjects;
 }
 

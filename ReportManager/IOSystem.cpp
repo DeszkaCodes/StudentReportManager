@@ -105,16 +105,11 @@ Student StudentIO::ReadStudent(unsigned short id) {
 				row.push_back(column);
 			}
 
-			/*
-			* DO SUBJECT READING HERE
-			*
-			* DELETE TEMP SUBJECTS
-			*/
-
 			if (std::stoi(row[0]) == id) {
-				Subject temp[7]{ Subject(SubjectType::Math, "5"), Subject(SubjectType::Math, "5") , Subject(SubjectType::Math, "5") , Subject(SubjectType::Math, "5") , Subject(SubjectType::Math, "5") ,Subject(SubjectType::Math, "5") ,Subject(SubjectType::Math, "5") };
+				
+				std::vector<Subject> subjVec = GradeIO::ReadGrades(id);
 
-				Student student(row[0], row[5][0], row[1], row[4], row[2], row[3], temp);
+				Student student(row[0], row[5][0], row[1], row[4], row[2], row[3], subjVec);
 
 				return student;
 			}
@@ -189,11 +184,12 @@ std::vector<Subject> GradeIO::ReadGrades(unsigned short id) {
 
 			}
 
-
 			if (found) {
 				for (short i = 1; i < row.size(); i++)
 				{
-					Subject subj((SubjectType)i, row[i]);
+					std::string subjName = IntToName(i);
+
+					Subject subj(subjName, row[i]);
 
 					subjects.push_back(subj);
 				}
@@ -209,6 +205,35 @@ std::vector<Subject> GradeIO::ReadGrades(unsigned short id) {
 	}
 	else
 		throw "File not found";
+}
+
+//NEEDS TO BE CHANGED INTO SOMETHING AUTOMATIC
+std::string GradeIO::IntToName(short index)
+{
+	switch (index) {
+	case 1:
+		return "Math";
+		break;
+	case 2:
+		return "P.E.";
+		break;
+	case 3:
+		return "Art";
+		break;
+	case 4:
+		return "History";
+		break;
+	case 5:
+		return "Grammar";
+	case 6:
+		return "R.E.";
+		break;
+	case 7:
+		return "I.T.";
+		break;
+	default:
+		return "Error";
+	}
 }
 
 //GradeIO end

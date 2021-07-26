@@ -18,13 +18,12 @@ enum class SubjectType : short {
 class Subject
 {
 public:
-	Subject(SubjectType _name, std::vector<unsigned short> grades);
-	Subject(SubjectType _name, std::string grades);
+	Subject(std::string _name, std::vector<unsigned short> grades);
+	Subject(std::string _name, std::string grades);
 
 
 	//Two ways to get the name of the subject
-	std::string getNameStr();
-	SubjectType getNameType();
+	std::string getName();
 
 
 	/*The grades are stored in unsigned short vectors
@@ -41,5 +40,5 @@ public:
 	static std::vector<unsigned short> StringToGrades(std::string string, char seperator = '-');
 
 private:
-	const SubjectType name;
+	std::string name;
 };

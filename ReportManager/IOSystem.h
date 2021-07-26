@@ -38,4 +38,6 @@ namespace GradeIO {
 	std::vector<Subject> ReadGrades(unsigned short id);
 
 	void EditData(unsigned short id, Subject subjects[]);
+
+	std::string IntToName(short index);
 }

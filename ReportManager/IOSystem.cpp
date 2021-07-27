@@ -3,12 +3,18 @@
 #include <fstream>
 #include <sstream>
 
+/*
+* IO System error codes:
+* 1: File not found
+* 2: ID not found
+*/
+
 
 //IDRes class
 
 
-IDRes::IDRes(bool isFound, unsigned int row, std::string fileName) :
-	found(isFound), row(row), fileName(fileName) {};
+IDRes::IDRes(bool isFound, unsigned short id, unsigned int row, std::string fileName) :
+	found(isFound), row(row), fileName(fileName), id(id) {};
 
 bool IDRes::getFound() {
 	return this->found;
@@ -21,6 +27,12 @@ unsigned int IDRes::getRow() {
 std::string IDRes::getFileName() {
 	return this->fileName;
 }
+
+unsigned short IDRes::getID() {
+	return this->id;
+}
+
+
 
 IDRes IDRes::CheckID(unsigned short id, std::string csvName) {
 	std::ifstream stream("Files/" + csvName + ".csv", std::ios::in);
@@ -50,7 +62,7 @@ IDRes IDRes::CheckID(unsigned short id, std::string csvName) {
 			if (readId == id) {
 				stream.close();
 
-				return IDRes(true, row, csvName);
+				return IDRes(true, id, row, csvName);
 			}
 		}
 		stream.close();
@@ -81,6 +93,10 @@ void StudentIO::WriteData(Student student) {
 		}
 
 		stream.close();
+		
+		std::vector<Subject> subjects;
+
+		GradeIO::WriteData(student.getId(), subjects);
 	}
 }
 
@@ -118,39 +134,90 @@ Student StudentIO::ReadStudent(unsigned short id) {
 		}
 
 		//If code reaches this far, it didn't found a student with the given ID
-		throw "ID not found";
+		throw 1;
 	}
 	else
-		throw "File not found";
+		throw 2;
 }
 
+std::vector<Student> StudentIO::ReadAll() {
+	std::ifstream stream("Files/students.csv", std::ios::in);
 
+	if (stream.is_open()) {
+
+		std::vector<Student> students;
+
+		std::vector<std::string> row;
+
+		std::string line, column;
+
+		while (getline(stream, line)) {
+			if (line[0] == '*')
+				continue;
+
+			row.clear();
+
+			std::stringstream s(line);
+
+			while (getline(s, column, ',')) {
+				row.push_back(column);
+			}
+
+			std::cout << row[0];
+
+			std::vector<Subject> subjVec = GradeIO::ReadGrades(std::stoi(row[0]));
+
+			Student student(row[0], row[5][0], row[1], row[4], row[2], row[3], subjVec);
+
+			students.push_back(student);
+		}
+
+		return students;
+
+	}
+	else
+		throw 1;
+}
 
 //StudentIO end
 
 
 //GradeIO namespace
 
-void GradeIO::WriteData(unsigned short id, Subject subjects[]) {
+void GradeIO::WriteData(unsigned short id, std::vector<Subject> subjects) {
 	std::ofstream stream("Files/grades.csv", std::ios::app | std::ios::out);
 
 	if (stream.is_open()) {
 
-		if (!IDRes::CheckID(id, "grades").getFound()) {
-			stream << id << ','
-				<< subjects[0].GradesToString() << ','
-				<< subjects[1].GradesToString() << ','
-				<< subjects[2].GradesToString() << ','
-				<< subjects[3].GradesToString() << ','
-				<< subjects[4].GradesToString() << ','
-				<< subjects[5].GradesToString() << ','
-				<< subjects[6].GradesToString() << '\n';
+		if (subjects.size() > 0) {
+			if (!IDRes::CheckID(id, "grades").getFound()) {
+				stream << id << ','
+					<< subjects[0].GradesToString() << ','
+					<< subjects[1].GradesToString() << ','
+					<< subjects[2].GradesToString() << ','
+					<< subjects[3].GradesToString() << ','
+					<< subjects[4].GradesToString() << ','
+					<< subjects[5].GradesToString() << ','
+					<< subjects[6].GradesToString() << '\n';
+			}
+		}
+		else {
+			if (!IDRes::CheckID(id, "grades").getFound()) {
+				stream << id << ','
+					<< ','
+					<< ','
+					<< ','
+					<< ','
+					<< ','
+					<< ','
+					<< '\n';
+			}
 		}
 
 		stream.close();
 	}
 	else
-		throw "File not found";
+		throw 1;
 }
 
 std::vector<Subject> GradeIO::ReadGrades(unsigned short id) {
@@ -201,10 +268,10 @@ std::vector<Subject> GradeIO::ReadGrades(unsigned short id) {
 		}
 
 		//If code reaches this far, it didn't found a student with the given ID
-		throw "ID not found";
+		throw 2;
 	}
 	else
-		throw "File not found";
+		throw 1;
 }
 
 //NEEDS TO BE CHANGED INTO SOMETHING AUTOMATIC
